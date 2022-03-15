@@ -207,7 +207,7 @@ class TreeList:
         `i` 番目の要素を取得する
         計算量 O(log n)
         """
-        assert 0 <= i < len(self)
+        assert -len(self) <= i < len(self)
         if i < 0: i += len(self)
         if i >= len(self): raise IndexError()
         return self.root.at(i).value
