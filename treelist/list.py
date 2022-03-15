@@ -1,4 +1,4 @@
-# TreeList v0.3
+# TreeList v0.4
 # License: CC0 1.0 Universal
 # ご自由に使用、改変、再配布していただいて構いません
 
@@ -44,9 +44,9 @@ class TreeList:
         `i` 番目の要素の前に `x` を挿入する
         計算量 O(log n)
         """
-        assert -len(self) <= i < len(self)
+        assert -len(self) <= i <= len(self)
         if i < 0: i += len(self)
-        if i >= len(self): raise IndexError()
+        if not (0 <= i <= len(self)): raise IndexError()
         (left, right) = self.Node.split(self.root, i)
         node = self.Node.merge(self.Node(x), right)
         self.root = self.Node.merge(left, node)
@@ -56,9 +56,9 @@ class TreeList:
         `i` 番目の要素の前に `xs` に含まれる要素をすべて挿入する
         計算量 O(log n + len(xs))
         """
-        assert -len(self) <= i < len(self)
+        assert -len(self) <= i <= len(self)
         if i < 0: i += len(self)
-        if i >= len(self): raise IndexError()
+        if not (0 <= i <= len(self)): raise IndexError()
         node = xs if type(xs) is self.Node else self.Node.build(xs)
         if not node: return
         (left, right) = self.Node.split(self.root, i)
